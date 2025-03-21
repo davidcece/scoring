@@ -39,6 +39,6 @@ jobs:
       - name: 🚦 Restart Spring Boot Application on Server
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            pkill -f 'java -jar scoring.jar' || true
+            pkill -9 -f 'java -jar scoring.jar' || true
             nohup java -jar /home/${{ secrets.SERVER_USER }}/scoring.jar > scoring.log 2>&1 &
           EOF
